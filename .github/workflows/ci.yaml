@@ -42,9 +42,10 @@ jobs:
         id: deploy
         run: echo "url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})" >> $GITHUB_OUTPUT
 
-      - name: Assign staging domain to deployment (if main branch)
-        if: ${{ github.ref == 'refs/heads/main' }}
-        run: vercel alias ${{ steps.deploy.outputs.url }} stg.my-service.com --scope=my-team --token=${{ secrets.VERCEL_TOKEN }}
+      # カスタムドメインの割り当てをコメントアウト
+      # - name: Assign staging domain to deployment (if main branch)
+      #   if: ${{ github.ref == 'refs/heads/main' }}
+      #   run: vercel alias ${{ steps.deploy.outputs.url }} stg.my-service.com --scope=my-team --token=${{ secrets.VERCEL_TOKEN }}
 
   prod:
     if: ${{ github.ref == 'refs/heads/release' }}
